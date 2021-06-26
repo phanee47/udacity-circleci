@@ -15,9 +15,37 @@ jobs:
       - run:
           name: on error
           command: echo "Hello Error!"
-          when: on_fail   
+          when: on_fail
+  build:
+    docker:
+      - image:  circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run lint
+  test: 
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i 
+      - run: npm run test 
+  analyze:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm audit     
 
 workflows:
   my_workflow:
     jobs:
       - my_job
+      - build
+      - test:
+          requires:
+            - build
+      - analyze:
+          requires:
+            - test
