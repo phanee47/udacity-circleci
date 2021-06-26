@@ -15,7 +15,7 @@ jobs:
       - run:
           name: on error
           command: echo "Hello Error!"
-          when: on_file   
+          when: on_fail   
 
 workflows:
   my_workflow:
