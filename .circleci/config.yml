@@ -1,47 +1,30 @@
 version: 2.1
 
-commands:
-  print_pipeline_id:
-    steps:
-      - run: echo ${CIRCLE_WORKFLOW_ID}
-
 jobs:
-  my_job:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - print_pipeline_id
-      - run: echo "no Error !"
-      - run:
-          name: on error
-          command: echo "Hello Error!"
-          when: on_fail
   build:
     docker:
-      - image:  circleci/node:13.8.0
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - run: npm i
       - run: npm run lint
-  test: 
+  test:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: npm i 
-      - run: npm run test 
+      - run: npm i
+      - run: npm run test
   analyze:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: npm i
-      - run: npm audit     
+      - run: npm audit
 
 workflows:
   my_workflow:
     jobs:
-      - my_job
       - build
       - test:
           requires:
