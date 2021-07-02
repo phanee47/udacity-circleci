@@ -1,6 +1,6 @@
 ---
 - name: Exercise to setup webserver
   hosts: all
-  user: ubuntu
+  user: dev
   roles:
     - setup
