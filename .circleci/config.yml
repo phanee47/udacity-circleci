@@ -12,9 +12,11 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible 
+            export ANSIBLE_HOST_KEY_CHECKING=False
       - run:
           name: Configure server
           command: |
+            export ANSIBLE_HOST_KEY_CHECKING=False 
             export host_key_checking=False
             export record_host_keys=False
             ansible-playbook playbook.yml -i inventory.txt
