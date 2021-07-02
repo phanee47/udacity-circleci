@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: ["80:95:cc:46:dc:cf:c0:8a:03:8c:f3:d7:aa:9e:35:47"]
+          fingerprints: ["a4:c1:95:1e:53:d7:70:94:74:75:31:0f:60:96:52:2f"]
       - run:
           name: Install dependencies
           command: |
@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook -i inventory.txt playbook.yml --private-key udacity.pem
+            ansible-playbook -i inventory.txt playbook.yml
 
 workflows:
   my_workflow:
