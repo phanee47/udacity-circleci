@@ -19,7 +19,8 @@ jobs:
             export ANSIBLE_HOST_KEY_CHECKING=False 
             export host_key_checking=False
             export record_host_keys=False
-            ansible-playbook playbook.yml -i inventory.txt
+            cat inventory.txt
+            ansible-playbook -i inventory.txt deploy-backend.yml -vv
 
 workflows:
   my_workflow:
